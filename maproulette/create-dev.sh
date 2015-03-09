@@ -1,0 +1,1 @@
+curl -vX POST http://dev.maproulette.org/api/admin/challenge/data-sa-gov-au-roads -d @./project.json --header "Content-Type: application:json"
