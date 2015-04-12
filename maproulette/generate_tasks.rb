@@ -57,14 +57,21 @@ ways.each do |id, way|
           coordinates: nodes
         }
       }],
-      identifier: "data.sa.gov.au-roads-#{way[:id]}", # TODO Generate uniqueid
+      identifier: "data.sa.gov.au-roads-#{id}", # TODO Generate uniqueid
       instruction: "Is this way present, misspelt or other?"
     }
   }
 
 end
+require 'fileutils'
+FileUtils.rm_r("tasks") if File.exists?("tasks")
+Dir.mkdir("tasks", 0700) 
 
 tasks.each do |task|
-  File.open(task[:geometries][:identifier], 'w') { |file| file.write(JSON.pretty_generate(task)) }
-  puts JSON.pretty_generate(task)
+  File.open("tasks/#{task[:geometries][:identifier]}", 'w') { |file| 
+    file.write(JSON.pretty_generate(task)) 
+    puts task[:geometries][:identifier]
+  }
+  # puts JSON.pretty_generate(task)
 end
+puts "All done"
