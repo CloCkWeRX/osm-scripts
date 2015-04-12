@@ -1,0 +1,100 @@
+[
+    {
+        "geometries": {
+            "features": [
+                {
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                -82.46102,
+                                27.94211
+                            ],
+                            [
+                                -82.46191,
+                                27.94032
+                            ],
+                            [
+                                -82.46102,
+                                27.94173
+                            ],
+                            [
+                                -82.46102,
+                                27.94164
+                            ]
+                        ],
+                        "type": "LineString"
+                    },
+                    "id": null,
+                    "properties": {
+                        "osmid": 10982458
+                    },
+                    "type": "Feature"
+                },
+                {
+                    "geometry": {
+                        "coordinates": [
+                            -82.461465,
+                            27.941024
+                        ],
+                        "type": "Point"
+                    },
+                    "id": null,
+                    "properties": {},
+                    "type": "Feature"
+                }
+            ],
+            "type": "FeatureCollection"
+        },
+        "identifier": "-245422134830019020515072624911431000923134125997",
+        "instruction": "1. [Zorro first = 5.4 degrees, second = 29.1 degrees]: 109824580003:109824580004:109824580005 (10982458,10982458,10982458)"
+    },
+    {
+        "geometries": {
+            "features": [
+                {
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                -82.15821,
+                                36.59216
+                            ],
+                            [
+                                -82.15896,
+                                36.59273
+                            ],
+                            [
+                                -82.15876,
+                                36.59271
+                            ],
+                            [
+                                -82.15911,
+                                36.59294
+                            ]
+                        ],
+                        "type": "LineString"
+                    },
+                    "id": null,
+                    "properties": {
+                        "osmid": 19628476
+                    },
+                    "type": "Feature"
+                },
+                {
+                    "geometry": {
+                        "coordinates": [
+                            -82.15886,
+                            36.59272
+                        ],
+                        "type": "Point"
+                    },
+                    "id": null,
+                    "properties": {},
+                    "type": "Feature"
+                }
+            ],
+            "type": "FeatureCollection"
+        },
+        "identifier": "-417552606960620657971358843856641634245254110348",
+        "instruction": "2. [Zorro first = 36.3 degrees, second = 32.2 degrees]: 196284740002:196111360001:196284760001 (19628474,19611136,19628476)"
+    }
+]

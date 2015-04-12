@@ -42,16 +42,12 @@ ways.each do |id, way|
     [node[:lon].to_f, node[:lat].to_f]
   }
 
-  properties = {
-    osmid: id # This is probably wrong
-  }
-
   tasks << {
     geometries: {
       type: "FeatureCollection",
       features: [{
         type: "Feature",
-        properties: way[:tags],
+        properties: way[:tags].merge(osmid: id.to_i),
         geometry: {
           type: "LineString",
           coordinates: nodes

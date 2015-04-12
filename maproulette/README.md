@@ -19,3 +19,5 @@ or
 ```
 ruby update-tasks-dev.rb
 ```
+
+Check http://dev.maproulette.org/admin/taskview/

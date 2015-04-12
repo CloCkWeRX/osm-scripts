@@ -1,10 +1,9 @@
 {
   "title": "South Australian Roads",
   "blurb": "Check and correct missing roads",
-  "description": "Some roads are missing or misnamed. See if you can help add this valuable information! Check
-   out [https://wiki.openstreetmap.org/wiki/Import/South_Australian_Roads](the import) on the wiki.",
+  "description": "Some roads are missing or misnamed. See if you can help add this valuable information! Check out [https://wiki.openstreetmap.org/wiki/Import/South_Australian_Roads](the import) on the wiki.",
   "instruction": "Check for a missing or misnamed road. If it is a simple typo, search google or http://maps.sa.gov.au/plb/ to check which dataset is more correct. If the data.sa.gov.au information is wrong, add a fixme note to the way; and contact the relevant council to confirm/have the data updated.",
   "help": "If in doubt, skip",
   "difficulty": 1,
-  "active": false
+  "active": true
 }
