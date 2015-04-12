@@ -3,33 +3,55 @@ require 'json'
 require 'nokogiri'
 
 file = File.new "sample.osm"
-doc = Nokogiri::XML(file)
+doc = Nokogiri::XML::Reader(file)
+nodes = {}
+ways = {}
+nd = {}
+tags = {}
+current_way_id = 0
+
+doc.each do |node|
+  next if node.name == "#text"
+
+  if node.name == "node"
+    nodes[node.attribute("id")] ||= {
+      visible: node.attribute('visible'),
+      lat: node.attribute('lat'),
+      lon: node.attribute('lon')
+    }
+  elsif node.name == "way"
+    ways[node.attribute("id")] ||= {
+      nodes: [],
+      tags: {}
+    }
+    current_way_id = node.attribute("id").to_s
+  elsif node.name == "nd"
+    ways[current_way_id][:nodes] << nodes[node.attribute("ref")]
+  elsif node.name == "tag"
+    ways[current_way_id][:tags][node.attribute("k")] ||= node.attribute("v")
+  elsif node.name == "osm"
+  else
+    p node.name
+    p node.attribute_nodes
+  end
+end
 
 tasks = []
-doc.xpath("//way").each do |way|
-  nodes = way.xpath("nd").collect {|nd|
-    node = doc.xpath("//node[@id='#{nd[:ref]}']").first
-
+ways.each do |id, way|
+  nodes = way[:nodes].collect {|node|
     [node[:lat], node[:lon]]
   }
 
-  name    = way.xpath("tag[@k='name']").first[:v]
-  surface = way.xpath("tag[@k='surface']").first[:v] rescue nil
-  highway = way.xpath("tag[@k='highway']").first[:v] rescue nil
-
   properties = {
-    osmid: way[:id] # This is probably wrong
+    osmid: id # This is probably wrong
   }
-  properties[:name] = name if name
-  properties[:surface] = surface if surface
-  properties[:highway] = highway if highway
 
   tasks << {
     geometries: {
       type: "FeatureCollection",
       features: [{
         type: "Feature",
-        properties: properties,
+        properties: way[:tags],
         geometry: {
           type: "LineString",
           coordinates: nodes
@@ -42,5 +64,7 @@ doc.xpath("//way").each do |way|
 
 end
 
-puts JSON.generate tasks
-# puts JSON.pretty_generate tasks
+tasks.each do |task|
+  File.open(task[:geometries][:identifier], 'w') { |file| file.write(JSON.pretty_generate(task)) }
+  puts JSON.pretty_generate(task)
+end
