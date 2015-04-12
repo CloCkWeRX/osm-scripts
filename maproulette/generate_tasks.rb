@@ -39,7 +39,7 @@ end
 tasks = []
 ways.each do |id, way|
   nodes = way[:nodes].collect {|node|
-    [node[:lat], node[:lon]]
+    [node[:lon].to_f, node[:lat].to_f]
   }
 
   properties = {
@@ -69,7 +69,7 @@ Dir.mkdir("tasks", 0700)
 
 tasks.each do |task|
   File.open("tasks/#{task[:geometries][:identifier]}", 'w') { |file| 
-    file.write(JSON.pretty_generate(task)) 
+    file.write(JSON.pretty_generate([task])) 
     puts task[:geometries][:identifier]
   }
   # puts JSON.pretty_generate(task)
